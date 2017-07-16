@@ -2,39 +2,25 @@ var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var production = process.env.NODE_ENV === 'production';
 var webpack = require('webpack');
-
-var plugins = [
-    new webpack.optimize.CommonsChunkPlugin({
-        name: 'main', // 把依赖移动到主文件
-        children: true, // 寻找所有子模块的共同依赖
-        minChunks: 2, // 设置一个依赖被引用超过多少次就提取出来
-    }),
-];
-
-if (production) {
-    plugins = plugins.concat([
-
-        // 在编译最终的静态资源之前，清理 builds/ 文件夹
-        new CleanPlugin('dist'),
-    ])
-}
-
-
+var CleanPlugin = require('clean-webpack-plugin');
 
 module.exports = {
     entry: {
         index: './src/index.js',
         join: './src/join.js',
+        vendor: ['jquery', 'mustache'],
     },
     output: {
         filename: production ? 'js/[name]-[hash].js' : 'js/[name]-bundle.js',
-        path: path.resolve(__dirname, 'dist')
+        path: path.resolve(__dirname, 'dist'),
+        publicPath: path.resolve(__dirname, 'dist/builds'),
+        chunkFilename: 'js/[name].[chunkhash:5].chunk.js',
     },
     module: {
         rules: [{
             test: /\.js$/,
             exclude: /(node_modules|bower_components)/,
-            include: path.resolve(__dirname, 'src/componsents/js'),
+            include: path.resolve(__dirname, 'src/Components/js'),
             use: {
                 loader: 'babel-loader',
                 options: {
@@ -45,8 +31,17 @@ module.exports = {
             test: /\.css$/,
             use: [
                 { loader: "style-loader" },
-                { loader: "css-loader" }
+                { loader: "css-loader" },
             ]
+        }, {
+            test: /\.scss$/,
+            use: [{
+                loader: "style-loader" // creates style nodes from JS strings
+            }, {
+                loader: "css-loader" // translates CSS into CommonJS
+            }, {
+                loader: "sass-loader" // compiles Sass to CSS
+            }, ]
         }, {
             test: /\.(jpg|png|gif|svg)$/i,
             use: [{
@@ -66,6 +61,10 @@ module.exports = {
         }]
     },
     plugins: [
+        new webpack.optimize.CommonsChunkPlugin({
+            name: ["vendor"],
+            minChunks: 2,
+        }),
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: './index.html',
@@ -84,6 +83,7 @@ module.exports = {
                 collapseWhitespace: false //删除空白符与换行符
             }
         }),
+        new CleanPlugin(['dist']),
     ],
     devServer: {
         contentBase: './',

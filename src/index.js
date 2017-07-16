@@ -2,10 +2,28 @@ import $ from 'jquery';
 require('./css/index.css');
 require('./css/reset.css');
 require('./css/animation.css');
+import Mustache from 'mustache';
 
 $(function() {
     fullscreen.init();
 });
+
+if (document.querySelectorAll('a').length) {
+    require.ensure([], () => {
+        const Button = require('./Components/Button');
+        const button = new Button('google.com');
+
+        button.render('a');
+    }, () => {}, 'button');
+}
+// 如果有 h1 标签，渲染页眉
+if (document.querySelectorAll('h1').length) {
+    require.ensure([], () => {
+        const Header = require('./Components/Header');
+
+        new Header().render('h1');
+    }, () => {}, 'Header');
+}
 
 // 左侧图片一段时间后消失
 var fadeOutImg = function() {
