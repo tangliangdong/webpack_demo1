@@ -12,8 +12,8 @@ module.exports = {
     },
     output: {
         filename: production ? 'js/[name]-[hash].js' : 'js/[name]-bundle.js',
-        path: path.resolve(__dirname, 'dist'),
-        publicPath: path.resolve(__dirname, 'dist/builds'),
+        path: path.resolve(__dirname, 'dist/'),
+        // publicPath: path.resolve(__dirname, 'dist'),
         chunkFilename: 'js/[name].[chunkhash:5].chunk.js',
     },
     module: {
@@ -88,7 +88,7 @@ module.exports = {
     devServer: {
         contentBase: './',
         host: 'localhost',
-        port: 9090, //默认8080
+        port: 8080, //默认8080
         inline: true, //可以监控js变化
         hot: true, //热启动
     }

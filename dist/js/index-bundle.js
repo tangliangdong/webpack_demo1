@@ -1,4 +1,4 @@
-webpackJsonp([2],[
+webpackJsonp([0],[
 /* 0 */,
 /* 1 */,
 /* 2 */,
@@ -10,34 +10,44 @@ webpackJsonp([2],[
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jquery__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_jquery__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mustache__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mustache___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_mustache__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__css_index_css__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__css_index_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__css_index_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__css_reset_css__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__css_reset_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__css_reset_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__css_animation_css__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__css_animation_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__css_animation_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_mustache__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_mustache___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_mustache__);
 
-__webpack_require__(5);
-__webpack_require__(11);
-__webpack_require__(13);
 
+
+
+
+// require('./css/index.css');
+// require('./css/reset.css');
+// require('./css/animation.css');
+// import Mustache from 'mustache';
 
 __WEBPACK_IMPORTED_MODULE_0_jquery___default()(function() {
     fullscreen.init();
 });
 
-if (document.querySelectorAll('a').length) {
-    __webpack_require__.e/* require.ensure */(1).then((() => {
-        const Button = __webpack_require__(22);
-        const button = new Button('google.com');
+// if (document.querySelectorAll('a').length) {
+//     require.ensure([], () => {
+//         const Button = require('./Components/Button');
+//         const button = new Button('google.com');
 
-        button.render('a');
-    }).bind(null, __webpack_require__)).catch(() => {});
-}
-// 如果有 h1 标签，渲染页眉
-if (document.querySelectorAll('h1').length) {
-    __webpack_require__.e/* require.ensure */(0).then((() => {
-        const Header = __webpack_require__(23);
+//         button.render('a');
+//     }, () => {}, 'button');
+// }
+// // 如果有 h1 标签，渲染页眉
+// if (document.querySelectorAll('h1').length) {
+//     require.ensure([], () => {
+//         const Header = require('./Components/Header');
 
-        new Header().render('h1');
-    }).bind(null, __webpack_require__)).catch(() => {});
-}
+//         new Header().render('h1');
+//     }, () => {}, 'Header');
+// }
 
 // 左侧图片一段时间后消失
 var fadeOutImg = function() {
